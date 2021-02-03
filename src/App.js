@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import FinishedTasks from './components/FinishedTasks';
+import PostForm from './components/PostForm';
+import UnfinishedTasks from './components/UnfinishedTasks';
+import TodayTasks from './components/TodayTasks'
 
-function App() {
+
+
+const App = () => {
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container pt-3">
+      <div className="row">
+        <div className="col text-white bg-secondary">
+          <div className="col" style={{paddingBottom: '10%'}}>
+          <h2 className="card-header">Tasks for today</h2>
+            <PostForm/>
+          </div>
+          <TodayTasks />
+        </div>
+        <div className="col text-dark bg-warning">
+          <h2 className="card-header">Unfinished tasks</h2>
+          <div className="col" style={{paddingBottom: '10%'}}>
+            <PostForm/>
+          </div>
+          <UnfinishedTasks />
+        </div>
+        <div className="col text-dark bg-info">
+          <h2 className="card-header">Finished tasks</h2>
+          <FinishedTasks />
+        </div>
+      </div>
     </div>
   );
 }

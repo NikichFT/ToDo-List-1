@@ -1,0 +1,6 @@
+export const CREATE_POST = 'POST/CREATE_POST'
+export const COMPLETE_POST = 'POST/COMPLETE_POST'
+export const OVERDUE_POST = 'POST/OVERDUE_POST'
+export const SHOW_ALERT = 'APP/SHOW_ALERT'
+export const HIDE_ALERT = 'APP/HIDE_ALERT'
+
