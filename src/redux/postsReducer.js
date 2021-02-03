@@ -1,4 +1,4 @@
-import { CREATE_POST, COMPLETE_POST, FETCH_POSTS, OVERDUE_POST, CHANGE_POST } from "./types"
+import { CREATE_POST, COMPLETE_POST, OVERDUE_POST } from "./types"
 
 const initialState = [
 
