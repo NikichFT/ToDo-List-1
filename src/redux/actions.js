@@ -3,7 +3,7 @@ import { CREATE_POST, SHOW_ALERT, HIDE_ALERT, COMPLETE_POST, OVERDUE_POST } from
 export function createPost(post) {
     
     return dispatch => {
-        console.log(post)
+        // console.log(post)
         dispatch({
             type: CREATE_POST,
             title: post.title,

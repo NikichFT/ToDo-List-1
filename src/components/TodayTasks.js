@@ -57,7 +57,7 @@ const TodayTasks = ({syncPosts}) => {
         return 'No tasks yet'
     }
     return (
-        tasks.map(post =>{ 
+        syncPosts.map(post =>{ 
             if (post.date) { return post.date.split('T')[0] == arrDate.join('-') && !post.completed && <Post post={post} overdue={post.overdue} completed={post.completed} key={post.id} timeToComplete={post.timeToComplete}/> }
             return !post.completed && <Post post={post} overdue={post.overdue} completed={post.completed} key={post.id} timeToComplete={post.timeToComplete}/>
         })

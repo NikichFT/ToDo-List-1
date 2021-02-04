@@ -40,7 +40,7 @@ const UnfinishedTasks = ({syncPosts}) => {
         return 'No tasks yet'
     }
     return (
-        tasks.map(post => !post.completed && <Post post={post} overdue={post.overdue} completed={post.completed} key={post.id} timeToComplete={post.timeToComplete}/>)
+        syncPosts.map(post => !post.completed && <Post post={post} overdue={post.overdue} completed={post.completed} key={post.id} timeToComplete={post.timeToComplete}/>)
     )
 }
 

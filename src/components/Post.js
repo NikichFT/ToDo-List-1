@@ -69,7 +69,7 @@ const Post = ({post, completeTask, completed, overdue, changeTask, createPost, t
     const changeInputHandlerDate = event => {
         event.persist()
         createPost({
-            title: task.title,
+            title: post.title,
             id: post.id,
             [event.target.name]: event.target.value,
             completed: post.completed,
@@ -78,7 +78,7 @@ const Post = ({post, completeTask, completed, overdue, changeTask, createPost, t
             changed: true 
         });
         setTask({
-            title: task.title,
+            title: post.title,
             id: post.id,
             [event.target.name]: event.target.value,
             completed: post.completed,
@@ -94,7 +94,7 @@ const Post = ({post, completeTask, completed, overdue, changeTask, createPost, t
         createPost({
             [event.target.name]: event.target.value,
             id: post.id,
-            date: task.date,
+            date: post.date,
             completed: post.completed,
             overdue: task.overdue,
             timeToComplete: timeToComplete,
@@ -133,11 +133,11 @@ const Post = ({post, completeTask, completed, overdue, changeTask, createPost, t
     return (
         <div className={`card ${completed ? 'bg-success text-white' : 'bg-light text-dark'} mb-3`}>
             <div className={`card-body ${overdue && post.date  ? 'bg-danger' : ''}`} style={{textDecoration: completed ? 'line-through' : 'none' }}>
-                <input type="text" defaultValue={post.title} name="title" onBlur={(event)=>{changeInputHandlerTitle(event)}} className="form-control card-header"/>
+                <input type="text" value={post.title} name="title" onChange={(event)=>{changeInputHandlerTitle(event)}} className="form-control card-header"/>
                 <div className="card-body">
                     <div className="card-text">complete before: </div>
                     <div className="col-10">
-                            <input className="form-control" defaultValue={post.date ? post.date.split('T').join(' ') : post.date} type="datetime-local" defaultValue={post.date} name="date" onBlur={(event)=>{changeInputHandlerDate(event)}} id="datetime-local-input"/>
+                            <input className="form-control" type="datetime-local" value={post.date} name="date" onChange={(event)=>{changeInputHandlerDate(event)}} id="datetime-local-input"/>
                     </div>  
             </div>                       
             </div>
