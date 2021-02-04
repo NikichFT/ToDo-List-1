@@ -47,7 +47,7 @@ const UnfinishedTasks = ({syncPosts}) => {
 
 const mapStateToProps = state => {
     return {
-        syncPosts: state.posts
+        syncPosts: [...state.posts.sort(function(a, b) { return a.timeToComplete - b.timeToComplete})]
     }
 }
 

@@ -58,8 +58,8 @@ const TodayTasks = ({syncPosts}) => {
     }
     return (
         syncPosts.map(post =>{ 
-            if (post.date) { return post.date.split('T')[0] == arrDate.join('-') && !post.completed && <Post post={post} overdue={post.overdue} completed={post.completed} key={post.id} timeToComplete={post.timeToComplete}/> }
-            return !post.completed && <Post post={post} overdue={post.overdue} completed={post.completed} key={post.id} timeToComplete={post.timeToComplete}/>
+            if (post.date) { return post.date.split('T')[0] == arrDate.join('-') && <Post post={post} overdue={post.overdue} completed={post.completed} key={post.id} timeToComplete={post.timeToComplete}/> }
+            return <Post post={post} overdue={post.overdue} completed={post.completed} key={post.id} timeToComplete={post.timeToComplete}/>
         })
     )
 }
@@ -67,7 +67,7 @@ const TodayTasks = ({syncPosts}) => {
 
 const mapStateToProps = state => {
     return {
-        syncPosts: [...state.posts.sort(function(a, b) { if (!a.overdue || !b.overdue) return a.timeToComplete - b.timeToComplete})]
+        syncPosts: [...state.posts.filter((post)=>{if (!post.completed) return post}).sort(function(a, b) { if (!a.overdue || !b.overdue) return a.timeToComplete - b.timeToComplete}),...state.posts.filter((post)=>{if (post.completed) return post})]
     }
 }
 

@@ -142,7 +142,7 @@ const Post = ({post, completeTask, completed, overdue, changeTask, createPost, t
             </div>                       
             </div>
             <div className="input-group-text"  style={{display: `${overdue && post.date ? 'none' : 'inline-block'}`}}>
-                    <input className="form-check-input btn-outline-info" onClick={() => {completeTask(post.id)}} type="checkbox" defaultChecked={completed ? true : false} value="" aria-label="Checkbox for following text input"/>
+                    <input className="form-check-input btn-outline-info" onClick={() => {completeTask(post.id)}} type="checkbox" checked={completed} value={completed} aria-label="Checkbox for following text input"/>
             </div>
             {completed && <button name='completed' value='false' onClick={(event) => changeInputHandlerCopy(event)} type="button" className="btn btn-primary">Copy</button>}
         </div>
