@@ -1,10 +1,18 @@
-import { CREATE_POST, COMPLETE_POST, OVERDUE_POST } from "./types"
+import { CREATE_POST, COMPLETE_POST, OVERDUE_POST } from "./types";
+import {load} from 'redux-localstorage-simple';
 
-const initialState = [
+let initialState = load({ 
+    states: ["posts"] ,
+    namespace: "Tasks"
+    });
 
-];
+if (!initialState || !initialState.posts || !initialState.posts.length) {
+    initialState = {
+        posts: []
+    }
+}
 
-export const postsReducer = (state = initialState, {type, title, id, date, completed, overdue, changed, timeToComplete}) => {
+export const postsReducer = (state = initialState.posts, {type, title, id, date, completed, overdue, changed, timeToComplete}) => {
     switch (type) {
         case CREATE_POST:
             if (!changed) {return [...state, {

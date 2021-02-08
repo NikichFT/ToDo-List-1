@@ -33,39 +33,15 @@ const Post = ({post, completeTask, completed, overdue, changeTask, createPost, t
         timeToComplete: post.timeToComplete
     });
 
-    //LocalStorage 
     useEffect(() => {
-        getLocalTodos()
-    }, [])
-
-    useEffect(() => {
-        saveLocalTodos();
         setTask(post);
     }, [post])
 
     useEffect(() => {
-        saveLocalTodos();
         setTask(task);
     }, [task])
 
-    const saveLocalTodos = () => {
-        localStorage.setItem("todos", JSON.stringify(task))
-    }
-
-    const getLocalTodos = () => {
-
-       
-        if (localStorage.getItem("todos") === null){
-            localStorage.setItem("todos", JSON.stringify([]));
-        }
-        else if (post.length == 0){           
-            let todoLocal = JSON.parse(localStorage.getItem("todos"));
-            setTask(todoLocal);
-            createPost(todoLocal);
-        }
-    }
-
-    //обработка инпута
+    //обработка input
     const changeInputHandlerDate = event => {
         event.persist()
         createPost({
@@ -142,7 +118,7 @@ const Post = ({post, completeTask, completed, overdue, changeTask, createPost, t
             </div>                       
             </div>
             <div className="input-group-text"  style={{display: `${overdue && post.date ? 'none' : 'inline-block'}`}}>
-                    <input className="form-check-input btn-outline-info" onClick={() => {completeTask(post.id)}} type="checkbox" checked={completed} value={completed} aria-label="Checkbox for following text input"/>
+                    <input className="form-check-input btn-outline-info" onChange={() => {completeTask(post.id)}} type="checkbox" checked={completed} value={completed} aria-label="Checkbox for following text input"/>
             </div>
             {completed && <button name='completed' value='false' onClick={(event) => changeInputHandlerCopy(event)} type="button" className="btn btn-primary">Copy</button>}
         </div>

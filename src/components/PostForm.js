@@ -79,7 +79,7 @@ class PostForm extends React.Component {
                     />
                     <label htmlFor="datetime-local-input" className="col-form-label">Date and time</label>
                     <div className="col-10">
-                        <input className="form-control" onChange={this.changeInputHandler} type="datetime-local" value={this.state.date} name="date" id="datetime-local-input"/>
+                        <input className="form-control" onChange={this.changeInputHandler} type="datetime-local" defaultValue={this.state.date} name="date" id="datetime-local-input"/>
                     </div>
                 </div>    
                 <button className="btn btn-success" type="submit">Add</button>

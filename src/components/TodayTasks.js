@@ -1,41 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import { createPost } from '../redux/actions';
 import Post from './Post';
 
 const TodayTasks = ({syncPosts}) => {
-
-    const [tasks, setTasks] = useState(syncPosts)
-
-    useEffect(() => {
-        getLocalTodos()
-    }, [])
-
-    useEffect(() => {
-        saveLocalTodos();
-        setTasks(syncPosts);
-    }, [syncPosts])
-
-    useEffect(() => {
-        saveLocalTodos();
-        setTasks(tasks);
-    }, [tasks])
-
-    const saveLocalTodos = () => {
-        localStorage.setItem("todos", JSON.stringify(tasks))
-    }
-
-    const getLocalTodos = () => {
-
-        if (localStorage.getItem("todos") === null){
-            localStorage.setItem("todos", JSON.stringify([]));
-        }
-        else if (syncPosts.length == 0){           
-            let todoLocal = JSON.parse(localStorage.getItem("todos"));
-            setTasks(todoLocal);
-            createPost(todoLocal);
-        }
-    }
 
     const thisDate = new Date()
 
@@ -53,9 +21,11 @@ const TodayTasks = ({syncPosts}) => {
         } return item
     })
     
-    if (syncPosts.length == 0 || !tasks) {
+    if (syncPosts.length == 0) {
         return 'No tasks yet'
     }
+
+    
     return (
         syncPosts.map(post =>{ 
             if (post.date) { return post.date.split('T')[0] == arrDate.join('-') && <Post post={post} overdue={post.overdue} completed={post.completed} key={post.id} timeToComplete={post.timeToComplete}/> }
